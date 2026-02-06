@@ -1,0 +1,261 @@
+{
+  "_README": "This file contains all portfolio data. Edit this file to add/update projects!",
+
+  "profile": {
+    "name": "JOÃO SANTOS",
+    "tagline": ["Game Audio Designer", "Music Producer", "Mix & Master"],
+    "bio": "Sound designer and music producer working across games and music projects, with a focus on composition, mixing, and mastering.",
+    "email": "Joaobessasfs@gmail.com",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/jo%C3%A3o-santos92/",
+      "soundcloud": "https://soundcloud.com/synchrosstudio",
+      "youtube": "https://www.youtube.com/@Synchrosstudio"
+    }
+  },
+
+  "categories": [
+    { "id": "game", "label": "Game Audio", "icon": "🎮", "color": "#00FFB2", "image": "/images/categories/game-audio.jpg" },
+    { "id": "music", "label": "Music", "icon": "🎵", "color": "#FF6B00", "image": "/images/categories/music.jpg" },
+    { "id": "mixing", "label": "Mix & Master", "icon": "🎚️", "color": "#7B61FF", "image": "/images/categories/mix-master.jpg" },
+    { "id": "vocal", "label": "Vocal Edit", "icon": "🎙️", "color": "#FF3366", "image": "/images/categories/vocal-edit.jpg" },
+    { "id": "media", "label": "Visual Media", "icon": "📺", "color": "#00D4FF", "image": "/images/categories/visual-media.jpg" }
+  ],
+
+  "projects": {
+    "game": {
+      "title": "Game Audio",
+      "description": "Game audio focused on immersive sound design and original music, crafted to enhance gameplay, feedback, and player experience.",
+      "commercial": [
+        {
+          "title": "CherryPop Burst",
+          "type": "Slot Game",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=dS0ndkeC7js",
+          "description": "Commercial slot game. Audio implementation was handled by the client's development team.",
+          "client": "The game and related assets are the property of AvatarUX.",
+          "award": "Best Bonus Buy Slot 2025 by Kongebonus",
+          "emoji": "🍒"
+        },
+        {
+          "title": "Electro Cubes",
+          "type": "Slot Game",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=DEJrjql-_g4",
+          "description": "Commercial slot game. Audio implementation was handled by the client's development team.",
+          "client": "The game and related assets are the property of AvatarUX.",
+          "emoji": "⚡"
+        },
+        {
+          "title": "Majestic Meow",
+          "type": "Slot Game",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=AT9HMXqqR5I",
+          "description": "Commercial slot game. Audio implementation was handled by the client's development team.",
+          "client": "The game and related assets are the property of AvatarUX.",
+          "emoji": "🐱"
+        },
+        {
+          "title": "São João",
+          "type": "Slot Game",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=AQ4yB2-aK3Y",
+          "description": "Commercial slot game. Audio implementation was handled by the client's development team.",
+          "client": "The game and related assets are the property of Chips Entertainment, Lda.",
+          "emoji": "🎉"
+        }
+      ],
+      "personal": [
+        {
+          "title": "Slot Game Re-Design",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=j6p4WWnzOIE",
+          "description": "Personal slot game re-design project.",
+          "emoji": "🎰"
+        },
+        {
+          "title": "Destiny 2 Re-Design",
+          "role": "Sound Designer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=yhRlKjVK420",
+          "description": "Game demo project focused on immersive sound design, combat and narrative elements.",
+          "emoji": "🚀"
+        },
+        {
+          "title": "Black Myth: Wukong Re-Design",
+          "role": "Sound Designer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=36tgS9KOYE8",
+          "description": "Game demo project focused on immersive sound design, combat and narrative elements.",
+          "emoji": "🐒"
+        },
+        {
+          "title": "Fluffulis - Journey in Dreamland",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=IN44WKmz2GY",
+          "description": "Game jam project developed under time constraints, focusing on rapid sound design and audio support for core gameplay mechanics.",
+          "emoji": "☁️"
+        }
+      ],
+      "services": [
+        "Game sound design",
+        "Original music composition for games",
+        "UI / UX audio",
+        "Asset creation"
+      ]
+    },
+
+    "music": {
+      "title": "Music Production & Composition",
+      "description": "Selected original music production works across multiple genres.\nRole: composition, production, mixing and mastering.",
+      "playlists": [
+        {
+          "title": "Multi-Genre & Collaborations",
+          "emoji": "🎼",
+          "soundcloudUrl": "https://api.soundcloud.com/playlists/1765647759"
+        },
+        {
+          "title": "Beat Production",
+          "emoji": "🥁",
+          "soundcloudUrl": "https://api.soundcloud.com/playlists/1743616407"
+        },
+        {
+          "title": "Psytrance Production",
+          "emoji": "🌀",
+          "soundcloudUrl": "https://api.soundcloud.com/playlists/1743611352"
+        }
+      ],
+      "info": {
+        "genres": ["Psytrance", "Hip Hop", "Electronic", "Experimental"],
+        "tools": ["Ableton Live", "Native Instruments Kontakt", "Third-party virtual instruments and audio plugins"]
+      }
+    },
+
+    "mixing": {
+      "title": "Mixing & Mastering",
+      "description": "Professional mixing and mastering services for independent artists.\nRole: vocal editing, mixing, mastering and technical post-production.",
+      "projects": [
+        {
+          "title": "$tag One – Turmalina",
+          "role": "Vocal Editing, Mixing & Mastering",
+          "description": "Released on streaming platforms.",
+          "emoji": "💎",
+          "youtubeId": "6T3Xs13pDks"
+        },
+        {
+          "title": "Ocken ft RBJ (Prod by Fatass C & Cutz by DJ Pulso) - 44",
+          "role": "Vocal Editing, Mixing & Mastering",
+          "description": "Released on streaming platforms.",
+          "emoji": "🔥",
+          "youtubeId": "fAl1ryOnb6Y"
+        }
+      ],
+      "services": [
+        "Vocal editing & tuning",
+        "Mixing",
+        "Mastering (Stereo & Stems)",
+        "Technical audio post-production"
+      ]
+    },
+
+    "vocal": {
+      "title": "Vocal Editing",
+      "description": "Vocal editing, tuning, timing correction and vocal cleanup.",
+      "projects": [
+        {
+          "title": "Video Voice Editing",
+          "role": "Vocal Editor",
+          "client": "The video and related assets are the property of Infineon Technologies.",
+          "responsibilities": [
+            "Voice cleanup and restoration",
+            "Timing and pacing optimization",
+            "Loudness compliance for online learning platforms"
+          ],
+          "emoji": "🎬",
+          "youtubeId": "WZCAAFXyhJM"
+        },
+        {
+          "title": "E-Learning Voice Editing",
+          "role": "Vocal Editor",
+          "client": "The video and related assets are the property of Infineon Technologies.",
+          "responsibilities": [
+            "Voice cleanup and restoration",
+            "Timing and pacing optimization",
+            "Loudness compliance for online learning platforms"
+          ],
+          "emoji": "📚",
+          "youtubeId": "9qnr9kxxm5c"
+        },
+        {
+          "title": "E-Learning Voice Editing",
+          "role": "Vocal Editor",
+          "client": "The video and related assets are the property of Infineon Technologies.",
+          "responsibilities": [
+            "Voice cleanup and restoration",
+            "Timing and pacing optimization",
+            "Loudness compliance for online learning platforms"
+          ],
+          "emoji": "📚",
+          "youtubeId": "H3RUhiaWonw"
+        },
+        {
+          "title": "Ocken ft 3RSTY - Blühen",
+          "role": "Vocal Editor",
+          "responsibilities": [
+            "Vocal comping and tuning",
+            "Timing alignment",
+            "Noise and breath cleanup"
+          ],
+          "emoji": "🎤",
+          "soundcloudUrl": "https://api.soundcloud.com/tracks/1988844491"
+        },
+        {
+          "title": "Spoken Word Monologue",
+          "role": "Vocal Editor & Sound Designer",
+          "description": "Vocal editing and atmospheric sound design for social media release.",
+          "soundcloudUrl": "https://api.soundcloud.com/tracks/2261393738?secret_token=s-wg9QQiFJcWJ",
+          "responsibilities": [
+            "Voice Recording",
+            "Vocal cleanup and clarity enhancement",
+            "Atmospheric sound layer design"
+          ],
+          "emoji": "🗣️"
+        }
+      ],
+      "services": [
+        "Vocal comping",
+        "Pitch correction & tuning",
+        "Timing alignment",
+        "Vocal cleanup (breaths, noise, clicks)",
+        "Vocal chain preparation for mixing"
+      ]
+    },
+
+    "media": {
+      "title": "Sound Design for Visual Media",
+      "description": "Sound design for video, UI, animation, and digital products.",
+      "commercial": [
+        {
+          "title": "Corporate Video",
+          "role": "Sound Design & Robotic Voice",
+          "client": "The video and related assets are the property of Infineon Technologies.",
+          "description": "Custom sound effects and synthetic voice design created for a corporate promotional video.",
+          "emoji": "🏢",
+          "youtubeId": "-Gzh9vmiWns"
+        }
+      ],
+      "personal": [
+        {
+          "title": "3D Animated Scene",
+          "role": "Sound Designer",
+          "description": "Sound design demo focusing on movement, texture, and spatial detail.",
+          "emoji": "🎨",
+          "youtubeId": "TtsFbO7rl3A"
+        }
+      ],
+      "services": [
+        "Custom sound design",
+        "UI & interaction sounds",
+        "Audio editing for visual content",
+        "Pre-mix & delivery of audio assets"
+      ]
+    }
+  }
+}
