@@ -98,10 +98,36 @@ const SoundCloudEmbed = ({ url, title, height = 300, featured = false, compact =
 // YouTube Embed Component
 const YouTubeEmbed = ({ videoId, title, featured = false, accentColor = '#1a1a24' }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isActivated, setIsActivated] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (isActivated) return;
+    const node = containerRef.current;
+    if (!node) return;
+    if (!('IntersectionObserver' in window)) {
+      setIsActivated(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsActivated(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '400px 0px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isActivated]);
 
   return (
     <div className="mt-3 sm:mt-2">
       <div
+        ref={containerRef}
         className="relative rounded-xl overflow-hidden w-full aspect-[16/10] sm:aspect-video"
         style={{
           backgroundColor: '#14161c',
@@ -120,18 +146,20 @@ const YouTubeEmbed = ({ videoId, title, featured = false, accentColor = '#1a1a24
             decoding="async"
           />
         )}
-        <LazyEmbed className="w-full h-full" placeholderClassName="rounded-xl">
-          <iframe
-            className="w-full h-full"
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&color=white`}
-            title={title}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            loading="lazy"
-            onLoad={() => setIsLoaded(true)}
-            allowFullScreen
-          />
-        </LazyEmbed>
+        {isActivated && (
+          <LazyEmbed className="w-full h-full" placeholderClassName="rounded-xl">
+            <iframe
+              className="w-full h-full"
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&color=white`}
+              title={title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              loading="eager"
+              onLoad={() => setIsLoaded(true)}
+              allowFullScreen
+            />
+          </LazyEmbed>
+        )}
       </div>
       <a
         href={`https://www.youtube.com/watch?v=${videoId}`}
