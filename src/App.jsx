@@ -536,17 +536,39 @@ export default function JoaoSantosPortfolio() {
     }
   };
 
+  const getVideoProvider = (url) => {
+    if (!url) return 'other';
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes('youtu.be') || u.hostname.includes('youtube.com')) return 'youtube';
+      if (u.hostname.includes('dailymotion.com') || u.hostname.includes('dai.ly')) return 'dailymotion';
+      return 'other';
+    } catch {
+      return 'other';
+    }
+  };
+
   const getYouTubeEmbedUrl = (url) => {
     if (!url) return null;
     try {
       const u = new URL(url);
       if (u.hostname.includes('youtu.be')) {
         const id = u.pathname.replace('/', '');
-        return id ? `https://www.youtube.com/embed/${id}` : null;
+        return id ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1` : null;
       }
       if (u.hostname.includes('youtube.com')) {
         const id = u.searchParams.get('v');
-        return id ? `https://www.youtube.com/embed/${id}` : null;
+        return id ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1` : null;
+      }
+      if (u.hostname.includes('dai.ly')) {
+        const id = u.pathname.replace('/', '');
+        return id ? `https://www.dailymotion.com/embed/video/${id}?autoplay=0&mute=0&start=0&queue-enable=0` : null;
+      }
+      if (u.hostname.includes('dailymotion.com')) {
+        const parts = u.pathname.split('/').filter(Boolean);
+        const videoIndex = parts.indexOf('video');
+        const id = videoIndex !== -1 ? parts[videoIndex + 1] : null;
+        return id ? `https://www.dailymotion.com/embed/video/${id}?autoplay=0&mute=0&start=0&queue-enable=0` : null;
       }
       return url;
     } catch {
@@ -554,20 +576,95 @@ export default function JoaoSantosPortfolio() {
     }
   };
 
+  const getDailymotionIdFromUrl = (url) => {
+    if (!url) return null;
+    try {
+      const u = new URL(url);
+      if (u.hostname.includes('dai.ly')) {
+        const id = u.pathname.replace('/', '');
+        return id || null;
+      }
+      if (u.hostname.includes('dailymotion.com')) {
+        const parts = u.pathname.split('/').filter(Boolean);
+        const videoIndex = parts.indexOf('video');
+        const id = videoIndex !== -1 ? parts[videoIndex + 1] : null;
+        return id || null;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
+
   const YouTubeFrame = ({ url, title, accentColor }) => {
+    const provider = getVideoProvider(url);
+    const [isActivated, setIsActivated] = useState(provider === 'other');
     const [isLoaded, setIsLoaded] = useState(false);
+    const [thumbnailUrl, setThumbnailUrl] = useState(null);
+    const containerRef = useRef(null);
     const videoId = getYouTubeIdFromUrl(url);
+    const dailymotionId = getDailymotionIdFromUrl(url);
     const embedUrl = getYouTubeEmbedUrl(url);
+    const iframeAllow =
+      provider === 'dailymotion'
+        ? 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+        : 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+
+    useEffect(() => {
+      if (provider !== 'dailymotion' || !dailymotionId) return;
+      let isActive = true;
+      const oembedUrl = `https://api.dailymotion.com/video/${dailymotionId}?fields=thumbnail_url`;
+      fetch(oembedUrl)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (!isActive) return;
+          if (data && data.thumbnail_url) setThumbnailUrl(data.thumbnail_url);
+        })
+        .catch(() => {
+          // no-op: if thumbnail fetch fails, we just won't show a placeholder
+        });
+      return () => {
+        isActive = false;
+      };
+    }, [provider, dailymotionId]);
+
+    useEffect(() => {
+      setIsActivated(provider === 'other');
+    }, [provider]);
+
+    useEffect(() => {
+      if (provider !== 'youtube' || isActivated) return;
+      const node = containerRef.current;
+      if (!node) return;
+      if (!('IntersectionObserver' in window)) {
+        setIsActivated(true);
+        return;
+      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsActivated(true);
+              observer.disconnect();
+            }
+          });
+        },
+        { rootMargin: '400px 0px' }
+      );
+      observer.observe(node);
+      return () => observer.disconnect();
+    }, [provider, isActivated]);
 
     return (
       <div
+        ref={containerRef}
         className="mb-3 mt-3 w-full overflow-hidden rounded-xl border bg-black aspect-[16/10] sm:aspect-video relative"
         style={{
           borderColor: `${accentColor}70`,
           boxShadow: `0 0 0 1px ${accentColor}50`
         }}
       >
-        {!isLoaded && videoId && (
+        {!isLoaded && provider === 'youtube' && videoId && (
           <img
             src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
             alt={`${title} thumbnail`}
@@ -576,18 +673,54 @@ export default function JoaoSantosPortfolio() {
             decoding="async"
           />
         )}
-        <LazyEmbed className="w-full h-full" placeholderClassName="rounded-xl">
-          <iframe
-            className="h-full w-full"
-            src={embedUrl}
-            title={title}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        {!isLoaded && provider === 'dailymotion' && thumbnailUrl && (
+          <img
+            src={thumbnailUrl}
+            alt={`${title} thumbnail`}
+            className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
-            onLoad={() => setIsLoaded(true)}
-            allowFullScreen
+            fetchpriority="high"
+            decoding="async"
           />
-        </LazyEmbed>
+        )}
+        {provider === 'dailymotion' && !isActivated && (
+          <button
+            type="button"
+            onClick={() => setIsActivated(true)}
+            aria-label="Play video"
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ backgroundColor: 'rgba(10, 10, 15, 0.45)' }}
+          >
+            <span
+              className="flex items-center justify-center"
+              style={{
+                width: '84px',
+                height: '56px',
+                backgroundColor: '#FF0000',
+                borderRadius: '14px',
+                boxShadow: '0 12px 24px rgba(0, 0, 0, 0.35)'
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+                <polygon points="12,8 25,16 12,24" fill="#FFFFFF" />
+              </svg>
+            </span>
+          </button>
+        )}
+        {isActivated && (
+          <LazyEmbed className="w-full h-full" placeholderClassName="rounded-xl">
+            <iframe
+              className="h-full w-full"
+              src={embedUrl}
+              title={title}
+              frameBorder="0"
+              allow={iframeAllow}
+              loading={provider === 'youtube' ? 'eager' : 'lazy'}
+              onLoad={() => setIsLoaded(true)}
+              allowFullScreen
+            />
+          </LazyEmbed>
+        )}
       </div>
     );
   };
