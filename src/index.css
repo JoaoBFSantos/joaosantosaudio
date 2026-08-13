@@ -4,9 +4,15 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
-  min-width: 320px;
 }
 
 #root {
@@ -19,7 +25,7 @@ body {
 
 .hero-waveform__bar {
   transform-origin: center bottom;
-  animation: hero-waveform 5s linear infinite;
+  animation: hero-waveform 4s linear infinite;
 }
 
 .hero-waveform__bar:nth-child(1) { animation-delay: -0s; }
@@ -89,6 +95,31 @@ body {
   }
 }
 
+@media (max-height: 700px) {
+  .hero-waveform {
+    max-width: 420px;
+  }
+
+  .hero-explore {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .hero-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-waveform {
+    max-width: 340px;
+  }
+
+  .hero-explore {
+    margin-top: 0.5rem;
+  }
+}
+
 @media (min-width: 768px) {
   .category-grid > :last-child {
     grid-column: 1 / -1;
@@ -135,5 +166,128 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .loading-dots__dot {
     animation: none;
+  }
+}
+
+/* Keep the contact form comfortably inside short viewports. */
+@media (max-height: 760px) {
+  .contact-dialog-wrap {
+    padding: 0.75rem;
+  }
+
+  .contact-dialog {
+    max-height: calc(100dvh - 1.5rem);
+    padding: 1.25rem;
+  }
+
+  .contact-dialog-close {
+    top: 0.875rem;
+    right: 0.875rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .contact-dialog-title {
+    margin-bottom: 0.25rem;
+    font-size: 1.35rem;
+  }
+
+  .contact-dialog-subtitle {
+    margin-bottom: 0.875rem;
+  }
+
+  .contact-form {
+    gap: 0.75rem;
+  }
+
+  .contact-form > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.75rem;
+  }
+
+  .contact-field-label {
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-field-control {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .contact-message {
+    min-height: 4.75rem;
+    height: 4.75rem;
+  }
+
+  .contact-submit {
+    min-height: 2.75rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .contact-email-option {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+@media (max-height: 620px) {
+  .contact-dialog-wrap {
+    padding: 0.5rem;
+  }
+
+  .contact-dialog {
+    max-height: calc(100dvh - 1rem);
+    padding: 1rem 1.125rem;
+  }
+
+  .contact-dialog-close {
+    top: 0.625rem;
+    right: 0.625rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .contact-dialog-title {
+    font-size: 1.3rem;
+  }
+
+  .contact-dialog-subtitle {
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .contact-form {
+    gap: 0.65rem;
+  }
+
+  .contact-form > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.65rem;
+  }
+
+  .contact-field-label {
+    margin-bottom: 0.3rem;
+    font-size: 0.7rem;
+  }
+
+  .contact-field-control {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .contact-message {
+    min-height: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .contact-submit {
+    min-height: 2.75rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .contact-email-option {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.78rem;
   }
 }

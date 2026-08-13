@@ -1,159 +1,179 @@
-# How to Edit Your Portfolio
+# How to Edit the Portfolio
 
-All your portfolio content is in the file: **`portfolio-data.json`** (in this same folder)
+All visible portfolio content is stored in [`portfolio-data.json`](./portfolio-data.json). Most content changes should only require editing that file.
 
-You can open it with any text editor (VS Code, Notepad++, or even regular Notepad).
+## Before editing
 
----
+- Keep the JSON structure intact.
+- Use double quotes for every key and text value.
+- Separate list items with commas, but do not add a comma after the final item.
+- Keep project titles unique where possible.
+- Run the validation commands at the end of this guide after making changes.
 
-## Quick Guide
+## Profile
 
-### To add a new project, find the right category and copy an existing entry
+The `profile` object controls the hero and contact information:
 
-For example, to add a new **Game Audio** commercial project:
-
-1. Open `portfolio-data.json`
-2. Find the `"game"` section inside `"projects"`
-3. Find `"commercial": [...]`
-4. Copy an existing project entry (everything between `{ }`)
-5. Paste it after the last entry, add a comma before it
-6. Edit the values
-
----
-
-## What Each Field Means
-
-### Profile Section (top of file)
 ```json
-"profile": {
-  "name": "JOÃO SANTOS",           // Your display name
-  "tagline": ["Game Audio Designer", "Music Producer", "Mix & Master"],  // Titles under your name
-  "bio": "Your bio text here...",  // Short description
-  "email": "your@email.com",       // Contact email
+{
+  "name": "JOÃO SANTOS",
+  "tagline": ["Game Audio Designer", "Music Producer", "Mix & Master"],
+  "bio": "Short professional introduction.",
+  "email": "name@example.com",
   "socialLinks": {
-    "linkedin": "https://linkedin.com/in/yourprofile",
-    "soundcloud": "https://soundcloud.com/yourprofile",
-    "youtube": ""                  // Leave empty string "" if you don't have one
+    "linkedin": "https://linkedin.com/in/profile",
+    "soundcloud": "https://soundcloud.com/profile",
+    "youtube": "https://youtube.com/@channel"
   }
 }
 ```
 
-### Categories (the 5 clickable cards)
-```json
-"categories": [
-  { "id": "game", "label": "Game Audio", "icon": "🎮", "color": "#00FFB2" }
-]
-```
-- `id`: Internal identifier (don't change unless you know what you're doing)
-- `label`: What appears on the card
-- `icon`: Any emoji
-- `color`: Hex color code (use a color picker online)
+Use an empty string (`""`) to hide an optional social link.
 
----
+## Categories
 
-## Project Types by Category
+The `categories` list controls the five cards on the home page:
 
-### 🎮 Game Audio (`projects.game`)
 ```json
 {
-  "title": "Project Name",
-  "type": "Slot Game",              // or "Mobile Game", etc.
-  "role": "Sound Designer & Composer",
-  "description": "What you did...",
-  "client": "Client Name",
-  "award": "Optional award text",   // Remove this line if no award
-  "emoji": "🍒"
+  "id": "game",
+  "label": "Game Audio",
+  "icon": "🎮",
+  "color": "#00FFB2",
+  "image": "/images/categories/game-audio.webp"
 }
 ```
 
-### 🎵 Music (`projects.music`)
+Do not change an `id` unless the matching rendering logic in `App.jsx` is also updated. Category images belong in `public/images/categories` and should use optimized WebP files.
+
+## Game Audio
+
+Game Audio accepts complete YouTube or Dailymotion URLs through `youtubeUrl`.
+
+### Commercial project
+
+```json
+{
+  "title": "Project Name",
+  "type": "Slot Game",
+  "role": "Sound Designer & Composer",
+  "youtubeUrl": "https://www.youtube.com/watch?v=VIDEO_ID",
+  "description": "Description of the work.",
+  "client": "The game and related assets are the property of Client Name.",
+  "award": "Optional award text",
+  "emoji": "🎮"
+}
+```
+
+Remove the `award` line when a project has no award.
+
+### Personal project
+
+```json
+{
+  "title": "Project Name Redesign",
+  "role": "Sound Designer",
+  "youtubeUrl": "https://www.youtube.com/watch?v=VIDEO_ID",
+  "description": "Description of the work.",
+  "emoji": "🎯"
+}
+```
+
+## Music
+
+Music projects use SoundCloud API playlist URLs:
+
 ```json
 {
   "title": "Playlist Name",
   "emoji": "🎼",
-  "soundcloudUrl": "https://api.soundcloud.com/playlists/YOUR_PLAYLIST_ID"
+  "soundcloudUrl": "https://api.soundcloud.com/playlists/PLAYLIST_ID"
 }
 ```
 
-### 🎚️ Mixing & Mastering (`projects.mixing`)
+The `info` object controls the Genres and Tools cards.
+
+## Mixing & Mastering
+
+Mixing projects use only the YouTube video ID, not the complete URL:
+
 ```json
 {
   "title": "Song Title",
   "role": "Vocal Editing, Mixing & Mastering",
-  "description": "Details...",
+  "description": "Released on streaming platforms.",
   "emoji": "💎",
-  "youtubeId": "VIDEO_ID_HERE"      // Just the ID, not full URL (e.g., "6T3Xs13pDks")
+  "youtubeId": "VIDEO_ID"
 }
 ```
 
-### 🎙️ Vocal Editing (`projects.vocal`)
+For `https://www.youtube.com/watch?v=6T3Xs13pDks`, the `youtubeId` is `6T3Xs13pDks`.
+
+## Vocal Editing
+
+Vocal projects can use YouTube or SoundCloud:
+
 ```json
 {
   "title": "Project Name",
   "role": "Vocal Editor",
-  "client": "Client Name",          // Optional
-  "description": "Details...",      // Optional
-  "responsibilities": ["Task 1", "Task 2"],
+  "client": "The video and related assets are the property of Client Name.",
+  "description": "Optional description.",
+  "responsibilities": [
+    "Voice cleanup and restoration",
+    "Timing and pacing optimization"
+  ],
   "emoji": "🎤",
-  "soundcloudUrl": "https://api.soundcloud.com/tracks/TRACK_ID",  // Optional - for audio
-  "videoUrl": "https://example.com/video.mp4",                    // Optional - for video
-  "videoThumbnail": "/assets/videos/thumbnail.jpg"                // Optional - preview image
+  "youtubeId": "VIDEO_ID"
 }
 ```
 
-### 📺 Visual Media (`projects.media`)
+For an audio project, replace `youtubeId` with:
+
+```json
+"soundcloudUrl": "https://api.soundcloud.com/tracks/TRACK_ID"
+```
+
+## Visual Media
+
+Visual Media projects also use YouTube video IDs:
+
 ```json
 {
-  "title": "Project Name",
+  "title": "Corporate Video",
   "role": "Sound Designer",
-  "client": "Client Name",
-  "description": "Details...",
+  "client": "The video and related assets are the property of Client Name.",
+  "description": "Description of the work.",
   "emoji": "🏢",
-  "videoUrl": "https://example.com/video.mp4",       // URL to the video file
-  "videoThumbnail": "/assets/videos/thumbnail.jpg"  // Local path to preview image
+  "youtubeId": "VIDEO_ID"
 }
 ```
 
----
+## Important: private SoundCloud track
 
-## Important Rules
+One Vocal Editing project intentionally uses a SoundCloud URL containing a `secret_token`. It allows visitors to play an unlisted track through the portfolio.
 
-1. **Always use double quotes** `"` for text, not single quotes `'`
-2. **Add commas** between items in a list, but NOT after the last item
-3. **Keep the structure** - don't remove the brackets `[ ]` or braces `{ }`
-4. **Test after editing** - run `npm run dev` and check if the site loads
+**Do not remove, hide, regenerate, or modify that `secret_token` unless the portfolio owner explicitly requests it.**
 
-### Correct comma usage:
-```json
-"commercial": [
-  { "title": "Project 1", "emoji": "🍒" },
-  { "title": "Project 2", "emoji": "⚡" },
-  { "title": "Project 3", "emoji": "🐱" }   // <-- NO comma on last item
-]
+## Add and order projects
+
+Projects appear in the same order as their JSON list. To add a project:
+
+1. Find the correct category and list.
+2. Copy the closest existing project object.
+3. Paste it in the desired position.
+4. Update every field.
+5. Check commas before saving.
+
+## Validate changes
+
+From the project directory, run:
+
+```bash
+pnpm lint
+pnpm test
+pnpm build
+pnpm dev
 ```
 
----
-
-## Finding SoundCloud/YouTube IDs
-
-### SoundCloud Playlist ID:
-1. Go to your playlist on SoundCloud
-2. Click "Share" → "Embed"
-3. In the embed code, find `api.soundcloud.com/playlists/NUMBERS`
-4. Copy those numbers
-
-### YouTube Video ID:
-1. Go to the YouTube video
-2. The URL looks like: `youtube.com/watch?v=ABC123xyz`
-3. Copy just the part after `v=` (e.g., `ABC123xyz`)
-
----
-
-## Need Help?
-
-If the site stops working after an edit:
-1. Undo your last change
-2. Check for missing commas or quotes
-3. Use a JSON validator: https://jsonlint.com/
-
-Good luck! 🎵
+Then open the local URL printed by Vite and inspect the affected category on desktop and mobile.

@@ -4,7 +4,7 @@
   "profile": {
     "name": "JOÃO SANTOS",
     "tagline": ["Game Audio Designer", "Music Producer", "Mix & Master"],
-    "bio": "Sound designer and music producer working across games and music projects, with a focus on composition, mixing, and mastering.",
+    "bio": "Game audio designer and music producer crafting immersive sound, original music, and interactive audio systems for games and visual media.",
     "email": "Joaobessasfs@gmail.com",
     "socialLinks": {
       "linkedin": "https://www.linkedin.com/in/jo%C3%A3o-santos92/",
@@ -14,11 +14,11 @@
   },
 
   "categories": [
-    { "id": "game", "label": "Game Audio", "icon": "🎮", "color": "#00FFB2", "image": "/images/categories/game-audio.jpg" },
-    { "id": "music", "label": "Music", "icon": "🎵", "color": "#FF6B00", "image": "/images/categories/music.jpg" },
-    { "id": "mixing", "label": "Mix & Master", "icon": "🎚️", "color": "#7B61FF", "image": "/images/categories/mix-master.jpg" },
-    { "id": "vocal", "label": "Vocal Edit", "icon": "🎙️", "color": "#FF3366", "image": "/images/categories/vocal-edit.jpg" },
-    { "id": "media", "label": "Visual Media", "icon": "📺", "color": "#00D4FF", "image": "/images/categories/visual-media.jpg" }
+    { "id": "game", "label": "Game Audio", "icon": "🎮", "color": "#00FFB2", "image": "/images/categories/game-audio.webp" },
+    { "id": "music", "label": "Music", "icon": "🎵", "color": "#FF6B00", "image": "/images/categories/music.webp" },
+    { "id": "mixing", "label": "Mix & Master", "icon": "🎚️", "color": "#8975FF", "image": "/images/categories/mix-master.webp" },
+    { "id": "vocal", "label": "Vocal Edit", "icon": "🎙️", "color": "#FF3366", "image": "/images/categories/vocal-edit.webp" },
+    { "id": "media", "label": "Visual Media", "icon": "📺", "color": "#00D4FF", "image": "/images/categories/visual-media.webp" }
   ],
 
   "projects": {
@@ -46,6 +46,15 @@
           "emoji": "⚡"
         },
         {
+          "title": "Crazy Mart Bonanza",
+          "type": "Slot Game",
+          "role": "Sound Designer",
+          "youtubeUrl": "https://www.dailymotion.com/video/xaxgmrq",
+          "description": "Commercial slot game. Audio implementation was handled by the client's development team.",
+          "client": "The game and related assets are the property of AvatarUX.",
+          "emoji": "🛒"
+        },
+        {
           "title": "Majestic Meow",
           "type": "Slot Game",
           "role": "Sound Designer & Composer",
@@ -66,25 +75,32 @@
       ],
       "personal": [
         {
-          "title": "Slot Game Re-Design",
-          "role": "Sound Designer & Composer",
-          "youtubeUrl": "https://www.youtube.com/watch?v=j6p4WWnzOIE",
-          "description": "Personal slot game re-design project.",
-          "emoji": "🎰"
+          "title": "Cube Game - Wwise Audio Redesign",
+          "role": "Sound Designer & Composer — Wwise Implementation",
+          "youtubeUrl": "https://www.youtube.com/watch?v=tiwy6e-1GM4",
+          "description": "Game demo project focused on immersive combat and narrative audio, featuring original music and full sound and music implementation in Wwise.",
+          "emoji": "🎯"
         },
         {
-          "title": "Destiny 2 Re-Design",
+          "title": "Destiny 2 Redesign",
           "role": "Sound Designer",
           "youtubeUrl": "https://www.youtube.com/watch?v=yhRlKjVK420",
           "description": "Game demo project focused on immersive sound design, combat and narrative elements.",
           "emoji": "🚀"
         },
         {
-          "title": "Black Myth: Wukong Re-Design",
+          "title": "Black Myth: Wukong Redesign",
           "role": "Sound Designer",
           "youtubeUrl": "https://www.youtube.com/watch?v=36tgS9KOYE8",
           "description": "Game demo project focused on immersive sound design, combat and narrative elements.",
           "emoji": "🐒"
+        },
+        {
+          "title": "Slot Game Redesign",
+          "role": "Sound Designer & Composer",
+          "youtubeUrl": "https://www.youtube.com/watch?v=j6p4WWnzOIE",
+          "description": "Personal slot game re-design project.",
+          "emoji": "🎰"
         },
         {
           "title": "Fluffulis - Journey in Dreamland",
@@ -137,7 +153,8 @@
           "role": "Vocal Editing, Mixing & Mastering",
           "description": "Released on streaming platforms.",
           "emoji": "💎",
-          "youtubeId": "6T3Xs13pDks"
+          "youtubeId": "6T3Xs13pDks",
+          "externalOnly": true
         },
         {
           "title": "Ocken ft RBJ (Prod by Fatass C & Cutz by DJ Pulso) - 44",
@@ -233,12 +250,20 @@
       "description": "Sound design for video, UI, animation, and digital products.",
       "commercial": [
         {
-          "title": "Corporate Video",
+          "title": "Corporate Video — Low-voltage Motor Control Solutions",
           "role": "Sound Design & Robotic Voice",
           "client": "The video and related assets are the property of Infineon Technologies.",
           "description": "Custom sound effects and synthetic voice design created for a corporate promotional video.",
           "emoji": "🏢",
           "youtubeId": "-Gzh9vmiWns"
+        },
+        {
+          "title": "Corporate Video — Powering the Green Transformation",
+          "role": "Sound Designer & AI Audio Specialist",
+          "client": "The video and related assets are the property of Infineon Technologies.",
+          "description": "Custom sound effects and AI voice generation created for a corporate promotional video.",
+          "emoji": "🌱",
+          "youtubeId": "Gx5F4H1oteo"
         }
       ],
       "personal": [
