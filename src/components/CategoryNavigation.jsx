@@ -35,7 +35,7 @@ export default function CategoryNavigation({ sections, activeSection, accentColo
                   onClick={() => onSelect(section.id)}
                   className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-medium min-h-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                   style={{
-                    color: isActive ? '#0A0A0F' : '#B8BBC2',
+                    color: isActive ? '#0A0A0F' : '#F3F3F6',
                     backgroundColor: isActive ? section.color : '#171922',
                     border: `1px solid ${isActive ? section.color : '#292c36'}`,
                     '--tw-ring-color': section.color,
