@@ -113,3 +113,9 @@ Output directory: dist
 For Vercel, connect the GitHub repository, select the Vite framework preset, configure `VITE_WEB3FORMS_ACCESS_KEY`, and deploy. Pushing a new commit to the configured production branch triggers a new deployment when automatic deployments are enabled.
 
 Every push and pull request also runs linting, tests, and a production build through GitHub Actions. Before publishing, run `pnpm lint`, `pnpm test`, and `pnpm build`, then check the affected pages in the local preview.
+
+## Copyright
+
+© 2026 João Santos. All rights reserved.
+
+The source code is published for viewing and reference only. Portfolio content, images, audio references, project descriptions, and original creative assets may not be copied, redistributed, or reused without prior permission.
